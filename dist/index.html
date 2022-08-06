@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <title>Weather app</title>
+</head>
+<body>
+    <div id="head"> 
+        <input type="text" id="inputName">
+        <i id="btn" class="fa fa-search"></i>
+    </div>
+    <div id="container">   
+    </div>
+
+    <script id="weather-template" type="text/x-handlebars-template">
+     {{#each cities}}
+     <div class="favourite">
+        {{#if favourite}}
+        <i class="fa fa-remove iconDelete" aria-hidden="true" ></i>
+        {{else}}
+        <i class="fa fa-plus iconAdd" aria-hidden="true" ></i>
+        {{/if}}
+        <div class= "inner">
+            <span class='temperature'>{{temperature}}°C </span>
+            <span class='name'>{{name}}</span>
+        </div>
+        <div class="inner">
+            <img  class='conditionPic'src='{{conditionPic}}'alt='Weather icon'/>
+            <span class='condition'>{{condition}}</span>
+        </div>
+    </div>
+    {{/each}}
+    </script>
+    <script src="./axios/dist/axios.js"></script>
+    <script src="jquery/dist/jquery.js"></script>
+    <script src="handlebars/dist/handlebars.js"></script>
+    <link href='https://css.gg/remove.css' rel='stylesheet'>
+    <script src="Render.js"></script>
+    <script src="model.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
