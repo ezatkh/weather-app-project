@@ -21,9 +21,11 @@
      {{#each cities}}
      <div class="favourite">
         {{#if favourite}}
-        <i class="fa fa-remove iconDelete" aria-hidden="true" ></i>
+        <i class="fa fa-remove iconDelete" aria-hidden="true" id="delete" ></i>
+        <i class="fa fa-plus iconAdd" aria-hidden="true"  id="add" style="display:none"  ></i>
         {{else}}
-        <i class="fa fa-plus iconAdd" aria-hidden="true" ></i>
+        <i class="fa fa-remove iconDelete" aria-hidden="true" id="delete" style="display:none" ></i>
+        <i class="fa fa-plus iconAdd" aria-hidden="true"  id="add" ></i>
         {{/if}}
         <div class= "inner">
             <span class='temperature'>{{temperature}}°C </span>

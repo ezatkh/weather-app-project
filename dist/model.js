@@ -4,6 +4,7 @@ class city {
   }
 
   async saveDataFromDB() {
+    this.cities = [];
     const fetchWeatherData = await axios.get("/cities");
     for (let city of fetchWeatherData.data) {
       this.cities.splice(this.cities.length, 1, city);
@@ -19,7 +20,7 @@ class city {
     }
   }
 
-  saveCity(cityData) {
+  saveCity(cityData, render) {
     axios.post(`/city`, cityData, function (err, res) {
       console.log(res);
     });

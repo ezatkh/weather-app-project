@@ -2,7 +2,7 @@ const Cities = new city();
 const render = new Renderer();
 async function loadPage() {
   await Cities.saveDataFromDB();
-  await render.renderData(Cities.cities);
+  render.renderData(Cities.cities);
 }
 window.addEventListener("DOMContentLoaded", async () => {
   loadPage();
@@ -12,11 +12,12 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 $("#btn").on("click", async function () {
   const cityName = $("#inputName").val();
+  $("#inputName").val("");
   await Cities.getCityData(cityName);
   render.renderData(Cities.cities);
 });
 
-const saveIcon = async () => {
+const saveIcon = () => {
   $("#container").on("click", ".iconAdd", async function () {
     let cityObject = {
       name: $(this).closest(".favourite").find(".name").text(),
@@ -32,12 +33,18 @@ const saveIcon = async () => {
         .attr("src"),
       favourite: true,
     };
-    await Cities.saveCity(cityObject);
+    Cities.saveCity(cityObject);
+    await Cities.saveDataFromDB();
+    $(this).hide();
+    $(this).closest(".favourite").find("#delete").show();
   });
 };
-const deleteIcon = async () => {
+const deleteIcon = () => {
   $("#container").on("click", ".iconDelete", async function () {
     let cityName = $(this).closest(".favourite").find(".name").text();
-    await Cities.removeCity(cityName);
+    Cities.removeCity(cityName);
+    await Cities.saveDataFromDB();
+    $(this).hide();
+    $(this).closest(".favourite").find("#add").show();
   });
 };
